@@ -77,8 +77,7 @@ async function main(): Promise<void> {
       userDataDir,
       viewport: VIEWPORT,
     },
-    cacheDir: "runtime/cache/saucedemo_with_agent",
-    selfHeal: true,
+    // cacheDir: "runtime/cache/saucedemo_with_agent",
   });
 
   try {

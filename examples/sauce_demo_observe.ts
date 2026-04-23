@@ -34,7 +34,7 @@ async function main(): Promise<void> {
       userDataDir,
       viewport: VIEWPORT,
     },
-    cacheDir: "runtime/cache/sauce_demo_observe",
+    // cacheDir: "runtime/cache/sauce_demo_observe",
   });
 
   try {
