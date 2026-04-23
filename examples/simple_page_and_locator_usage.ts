@@ -1,4 +1,4 @@
-// Run with: npm exec -- tsx examples/simple_page_usage.ts
+// Run with: npm exec -- tsx examples/simple_page_and_locator_usage.ts
 
 import "dotenv/config";
 
