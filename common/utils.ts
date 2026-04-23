@@ -1,5 +1,4 @@
 import { ModelConfiguration, V3Env } from "@browserbasehq/stagehand";
-import { ModelConfig } from "@browserbasehq/stagehand/lib/v3/types/public/api.js";
 import { z } from "zod";
 
 const stagehandEnvSchema = z.enum(["LOCAL", "BROWSERBASE"]);
@@ -43,4 +42,3 @@ export function getBrowserbaseApiKey(): string | undefined {
 export function getBrowserbaseProjectId(): string | undefined {
   return getOptionalEnv("BROWSERBASE_PROJECT_ID");
 }
-
