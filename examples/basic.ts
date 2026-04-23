@@ -1,10 +1,13 @@
+// Run with: npm exec -- tsx examples/basic.ts
+
 import "dotenv/config";
 
 import { Stagehand } from "@browserbasehq/stagehand";
 import { z } from "zod";
+import { getStagehandEnv, getStagehandModel } from "../common/utils.js";
 
-const env = process.env.STAGEHAND_ENV === "BROWSERBASE" ? "BROWSERBASE" : "LOCAL";
-const model = process.env.STAGEHAND_MODEL ?? "gpt-4.1-mini";
+const env = getStagehandEnv();
+const model = getStagehandModel();
 
 const stagehand = new Stagehand({
   env,

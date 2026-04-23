@@ -39,4 +39,4 @@ npm exec -- tsx examples/<script-name>.ts
 ## Adding More Examples
 
 Add TypeScript files under `examples/`. Keep scripts self-contained so each one can be run independently with `npm exec -- tsx ...`.
-
+At the top of each example file, add a comment showing the exact command used to run that file.

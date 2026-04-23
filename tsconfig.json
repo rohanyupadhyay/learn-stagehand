@@ -9,6 +9,5 @@
     "forceConsistentCasingInFileNames": true,
     "types": ["node"]
   },
-  "include": ["examples/**/*.ts"]
+  "include": ["common/**/*.ts", "examples/**/*.ts"]
 }
-
