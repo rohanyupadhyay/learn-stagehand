@@ -32,10 +32,6 @@ Use the same pattern for new scripts:
 npm exec -- tsx examples/<script-name>.ts
 ```
 
-## Examples
-
-- `examples/basic.ts`: opens the Stagehand docs, uses natural-language browser actions, and extracts page information.
-
 ## Adding More Examples
 
 Add TypeScript files under `examples/`. Keep scripts self-contained so each one can be run independently with `npm exec -- tsx ...`.
