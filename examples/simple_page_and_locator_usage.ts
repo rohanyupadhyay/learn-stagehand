@@ -30,10 +30,13 @@ try {
   // Navigate to the Sauce Demo login page.
   await page.goto(SAUCE_DEMO_URL);
 
-  // Use the page object directly instead of AI helpers.
-  await page.locator('[data-test="username"]').fill(SAUCE_DEMO_USERNAME);
-  await page.locator('[data-test="password"]').fill(SAUCE_DEMO_PASSWORD);
-  await page.locator('[data-test="login-button"]').click();
+  // Wait until the page fully loads before interacting with the login form.
+  await page.waitForLoadState("load", 15000);
+
+  // Use the page object directly, find elements with xpath and interact with them.
+  await page.locator('input[data-test="username"]').fill(SAUCE_DEMO_USERNAME);
+  await page.locator('input[data-test="password"]').fill(SAUCE_DEMO_PASSWORD);
+  await page.locator('input[data-test="login-button"]').click();
 
   const title = await page.title();
   const url = page.url();
