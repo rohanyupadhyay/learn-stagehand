@@ -32,6 +32,10 @@ Use the same pattern for new scripts:
 npm exec -- tsx examples/<script-name>.ts
 ```
 
+## Examples
+
+The `example/` directory contains all the stagehand examples.
+
 ## Adding More Examples
 
 Add TypeScript files under `examples/`. Keep scripts self-contained so each one can be run independently with `npm exec -- tsx ...`.
