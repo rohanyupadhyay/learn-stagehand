@@ -47,16 +47,7 @@ async function main(): Promise<void> {
 
     const result = await stagehand.act('Type "John" into the username field.');
 
-    const usernameValue = await page
-      .locator('input[data-test="username"]')
-      .inputValue();
-
-    console.log({
-      actionDescription: result.actionDescription,
-      message: result.message,
-      success: result.success,
-      usernameValue,
-    });
+    console.log(result);
   } finally {
     await stagehand.close();
     removeAutomationUserDataDir(userDataDir);
