@@ -49,7 +49,7 @@ try {
   await stagehand.init();
 
   // Connect Playwright to the browser session that Stagehand started.
-  // `chromium` is playwright's object for chromium based browsers.
+  // `chromium` is playwright's object for controlling chromium based browsers.
   const browser = await chromium.connectOverCDP(stagehand.connectURL());
   
   // Create a fresh Playwright context with video recording enabled. Video
