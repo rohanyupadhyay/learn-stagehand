@@ -17,6 +17,7 @@ const model = getStagehandModel();
 const stagehand = new Stagehand({
   env, // LOCAL or BROWSERBASE
   model, // e.g. "google/gemini-2.5-pro", "openai/gpt-4o", etc.
+  experimental: true, // Enable experimental features.
 });
 
 try {
