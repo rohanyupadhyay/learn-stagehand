@@ -1,4 +1,4 @@
-// Run with: npm exec -- tsx examples/simple_page_and_locator_usage.ts
+// Run with: npm exec -- tsx examples/sauce_demo_page_and_locator.ts
 
 import "dotenv/config";
 
