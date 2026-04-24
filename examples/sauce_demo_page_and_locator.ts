@@ -13,11 +13,10 @@ const SAUCE_DEMO_PASSWORD = "secret_sauce";
 const env = getStagehandEnv();
 const model = getStagehandModel();
 
-// Create one Stagehand client for the whole script.
+// Create one Stagehand client.
 const stagehand = new Stagehand({
   env, // LOCAL or BROWSERBASE
   model, // e.g. "google/gemini-2.5-pro", "openai/gpt-4o", etc.
-  experimental: true, // Enable experimental features.
 });
 
 try {
