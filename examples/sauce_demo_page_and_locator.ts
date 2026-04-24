@@ -15,8 +15,8 @@ const model = getStagehandModel();
 
 // Create one Stagehand client for the whole script.
 const stagehand = new Stagehand({
-  env,
-  model,
+  env, // LOCAL or BROWSERBASE
+  model, // e.g. "google/gemini-2.5-pro", "openai/gpt-4o", etc.
 });
 
 try {
