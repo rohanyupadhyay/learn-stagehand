@@ -1,4 +1,4 @@
-// Run with: npm exec -- tsx examples/saucedemo_with_agent.ts
+// Run with: npm exec -- tsx examples/saucedemo_purchase_agent.ts
 
 import "dotenv/config";
 
