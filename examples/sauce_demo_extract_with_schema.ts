@@ -43,7 +43,7 @@ async function main(): Promise<void> {
   const stagehand = new Stagehand({
     env,
     model,
-    experimental: true,
+    experimental: true, // true for hybrid mode, false for DOM or CUA mode.
     verbose: 0,
     localBrowserLaunchOptions: {
       userDataDir,
@@ -59,7 +59,7 @@ async function main(): Promise<void> {
     await page.goto(SAUCE_DEMO_URL);
 
     const agent = stagehand.agent({
-      mode: "hybrid",
+      mode: "hybrid", // "dom", "cua", or "hybrid". Default is "dom".
       model,
     });
 

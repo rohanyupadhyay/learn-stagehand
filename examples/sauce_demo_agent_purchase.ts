@@ -70,7 +70,7 @@ async function main(): Promise<void> {
   // can interfere with automation.
   const stagehand = new Stagehand({
     env,
-    experimental: true,
+    experimental: true, // true for hybrid mode, false for DOM or CUA mode.
     model,
     verbose: 0,
     localBrowserLaunchOptions: {
@@ -85,7 +85,7 @@ async function main(): Promise<void> {
 
     // The hybrid agent can mix direct browser actions with reasoning steps.
     const agent = stagehand.agent({
-      mode: "hybrid",
+      mode: "hybrid", // "dom", "cua", or "hybrid". Default is "dom".
       model,
       systemPrompt:
         "You are a careful browser automation assistant. Complete only the requested demo-site workflow and stop after the final confirmation page is reached.",
