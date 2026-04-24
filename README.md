@@ -22,11 +22,6 @@ Set `STAGEHAND_ENV=LOCAL` for local browser runs, or `STAGEHAND_ENV=BROWSERBASE`
 
 Example files live in `examples/` and are run directly with `tsx`:
 
-```bash
-npm exec -- tsx examples/basic.ts
-```
-
-Use the same pattern for new scripts:
 
 ```bash
 npm exec -- tsx examples/<script-name>.ts
