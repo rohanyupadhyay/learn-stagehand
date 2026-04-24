@@ -1,4 +1,7 @@
 // Run with: npm exec -- tsx examples/sauce_demo_agent_login.ts
+//
+// This example uses Stagehand's agent API to log into Sauce Demo with
+// provided credentials.
 
 import "dotenv/config";
 

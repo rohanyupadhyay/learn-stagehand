@@ -1,4 +1,7 @@
 // Run with: npm exec -- tsx examples/sauce_demo_agent_purchase.ts
+//
+// This example runs a full Sauce Demo checkout flow with Stagehand's
+// agent API and prints structured purchase details.
 
 import "dotenv/config";
 

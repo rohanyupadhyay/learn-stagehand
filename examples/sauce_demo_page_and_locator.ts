@@ -1,4 +1,7 @@
 // Run with: npm exec -- tsx examples/sauce_demo_page_and_locator.ts
+//
+// This example uses the Playwright page and locator APIs from a Stagehand
+// browser session to log into Sauce Demo directly.
 
 import "dotenv/config";
 

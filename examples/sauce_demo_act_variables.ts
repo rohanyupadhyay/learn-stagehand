@@ -1,4 +1,7 @@
 // Run with: npm exec -- tsx examples/sauce_demo_act_variables.ts
+//
+// This example opens Sauce Demo and uses a Stagehand variable in `act`
+// to fill the password field.
 
 import "dotenv/config";
 

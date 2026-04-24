@@ -1,4 +1,7 @@
 // Run with: npm exec -- tsx examples/sauce_demo_extract_with_schema.ts
+//
+// This example logs into Sauce Demo and uses Stagehand `extract`
+// with both an instruction and a Zod schema.
 
 import "dotenv/config";
 

@@ -1,4 +1,7 @@
 // Run with: npm exec -- tsx examples/sauce_demo_extract_without_schema.ts
+//
+// This example logs into Sauce Demo and uses Stagehand `extract`
+// with an instruction but without a schema.
 
 import "dotenv/config";
 

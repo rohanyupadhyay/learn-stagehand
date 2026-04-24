@@ -1,4 +1,7 @@
 // Run with: npm exec -- tsx examples/sauce_demo_observe.ts
+//
+// This example opens the Sauce Demo landing page and asks Stagehand
+// to observe the input fields available on the page.
 
 import "dotenv/config";
 

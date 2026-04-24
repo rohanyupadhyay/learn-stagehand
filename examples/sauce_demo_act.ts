@@ -1,4 +1,7 @@
 // Run with: npm exec -- tsx examples/sauce_demo_act.ts
+//
+// This example opens the Sauce Demo landing page and uses Stagehand `act`
+// to type into the username field.
 
 import "dotenv/config";
 
