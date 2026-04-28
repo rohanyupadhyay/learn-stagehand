@@ -1,4 +1,4 @@
-// Run with: npm exec -- tsx examples/playwright_integration.ts
+// Run with: npm exec -- tsx examples/sauce_demo_playwright_integration_video_recording.ts
 //
 // This example uses Playwright alongside Stagehand to record video
 // because Stagehand does not support video recording in LOCAL mode.
