@@ -94,7 +94,7 @@ async function main(): Promise<void> {
     await stagehand.init();
 
     const agent = stagehand.agent({
-      mode: "hybrid",
+      mode: "hybrid", // "dom", "cua", or "hybrid". Default is "dom".
       model,
       tools: {
         check_requirement: checkRequirement,

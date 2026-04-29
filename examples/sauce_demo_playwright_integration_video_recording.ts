@@ -69,7 +69,9 @@ try {
   // the Playwright-owned page for the run.
   await stagehand.context.pages()[0]?.close();
   
-  const agent = stagehand.agent({ mode: "hybrid" });
+  const agent = stagehand.agent({
+    mode: "hybrid", // "dom", "cua", or "hybrid". Default is "dom".
+  });
 
   // Stagehand handles the AI login flow on a Playwright-owned page.
   await pwPage.goto(SAUCE_DEMO_URL);
