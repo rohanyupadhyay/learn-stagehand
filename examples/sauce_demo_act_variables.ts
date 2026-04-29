@@ -1,8 +1,8 @@
 // Run with: npm exec -- tsx examples/sauce_demo_act_variables.ts
 // Run with delay: npm exec -- tsx examples/sauce_demo_act_variables.ts --add-delay
 //
-// This example opens Sauce Demo and uses a Stagehand variable in `act`
-// to fill the password field.
+// This example opens Sauce Demo and uses Stagehand variables in `act`
+// to fill the username and password fields.
 
 import "dotenv/config";
 
@@ -22,6 +22,10 @@ const env = getStagehandEnv();
 const model = getStagehandModel();
 
 const variables = {
+  username: {
+    value: "standard_user",
+    description: "The Sauce Demo username to enter in the login form.",
+  },
   password: {
     value: "secret_sauce",
     description: "The Sauce Demo password to enter in the login form.",
@@ -29,8 +33,8 @@ const variables = {
 };
 
 /**
- * Opens Sauce Demo and uses a Stagehand variable in `act` to fill the
- * password field.
+ * Opens Sauce Demo and uses Stagehand variables in `act` to fill the
+ * username and password fields.
  */
 async function main(): Promise<void> {
   const userDataDir = createAutomationUserDataDir(
@@ -60,7 +64,15 @@ async function main(): Promise<void> {
     await page.waitForLoadState("load", 15000);
     await delayAfterAction();
 
-    const result = await stagehand.act(
+    const usernameResult = await stagehand.act(
+      "Type %username% into the username field.",
+      {
+        variables: variables,
+      },
+    );
+    await delayAfterAction();
+
+    const passwordResult = await stagehand.act(
       "Type %password% into the password field.",
       {
         variables: variables,
@@ -68,7 +80,10 @@ async function main(): Promise<void> {
     );
     await delayAfterAction();
 
-    console.log(result);
+    console.log({
+      usernameResult,
+      passwordResult,
+    });
   } finally {
     await stagehand.close();
     removeAutomationUserDataDir(userDataDir);
