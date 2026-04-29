@@ -35,10 +35,11 @@ const videoDir = path.resolve("runtime/videos/playwright_integration");
 
 fs.mkdirSync(videoDir, { recursive: true });
 
+// Create one Stagehand client.
 const stagehand = new Stagehand({
-  env,
+  env, // LOCAL or BROWSERBASE
   experimental: true,
-  model,
+  model, // e.g. "google/gemini-2.5-pro", "openai/gpt-4o", etc.
   localBrowserLaunchOptions: {
     userDataDir,
   },

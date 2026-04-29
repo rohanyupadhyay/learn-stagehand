@@ -77,10 +77,11 @@ async function main(): Promise<void> {
     "stagehand-sauce-demo-custom-tool-purchase-",
   );
 
+  // Create one Stagehand client.
   const stagehand = new Stagehand({
-    env,
+    env, // LOCAL or BROWSERBASE
     experimental: true,
-    model,
+    model, // e.g. "google/gemini-2.5-pro", "openai/gpt-4o", etc.
     verbose: 0,
     localBrowserLaunchOptions: {
       userDataDir,

@@ -69,12 +69,13 @@ async function main(): Promise<void> {
     "stagehand-sauce-demo-profile-",
   );
 
+  // Create one Stagehand client.
   // Use a temporary Chrome profile so local runs avoid browser prompts that
   // can interfere with automation.
   const stagehand = new Stagehand({
-    env,
+    env, // LOCAL or BROWSERBASE
     experimental: true, // true for hybrid mode, false for DOM or CUA mode.
-    model,
+    model, // e.g. "google/gemini-2.5-pro", "openai/gpt-4o", etc.
     verbose: 0,
     localBrowserLaunchOptions: {
       userDataDir,
