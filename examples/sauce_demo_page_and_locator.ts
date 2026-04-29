@@ -1,4 +1,5 @@
 // Run with: npm exec -- tsx examples/sauce_demo_page_and_locator.ts
+// Run with delay: npm exec -- tsx examples/sauce_demo_page_and_locator.ts --add-delay
 //
 // This example uses the Playwright page and locator APIs from a Stagehand
 // browser session to log into Sauce Demo directly.
@@ -6,6 +7,7 @@
 import "dotenv/config";
 
 import { Stagehand } from "@browserbasehq/stagehand";
+import { delayAfterAction } from "../common/delay.js";
 import { getStagehandEnv, getStagehandModel } from "../common/utils.js";
 
 const SAUCE_DEMO_URL = "https://www.saucedemo.com/";
@@ -32,17 +34,24 @@ try {
 
   // Navigate to the Sauce Demo login page.
   await page.goto(SAUCE_DEMO_URL);
+  await delayAfterAction();
 
   // Wait until the page fully loads before interacting with the login form.
   await page.waitForLoadState("load", 15000);
+  await delayAfterAction();
 
   // Use the page object directly, find elements with xpath and interact with them.
   await page.locator('input[data-test="username"]').fill(SAUCE_DEMO_USERNAME);
+  await delayAfterAction();
   await page.locator('input[data-test="password"]').fill(SAUCE_DEMO_PASSWORD);
+  await delayAfterAction();
   await page.locator('input[data-test="login-button"]').click();
+  await delayAfterAction();
 
   const title = await page.title();
+  await delayAfterAction();
   const url = page.url();
+  await delayAfterAction();
 
   console.log({
     title,

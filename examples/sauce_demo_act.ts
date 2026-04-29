@@ -1,4 +1,5 @@
 // Run with: npm exec -- tsx examples/sauce_demo_act.ts
+// Run with delay: npm exec -- tsx examples/sauce_demo_act.ts --add-delay
 //
 // This example opens the Sauce Demo landing page and uses Stagehand `act`
 // to type into the username field.
@@ -11,6 +12,7 @@ import {
   createAutomationUserDataDir,
   removeAutomationUserDataDir,
 } from "../common/chromeAutomationProfile.js";
+import { delayAfterAction } from "../common/delay.js";
 import { getStagehandEnv, getStagehandModel } from "../common/utils.js";
 
 const SAUCE_DEMO_URL = "https://www.saucedemo.com/";
@@ -45,11 +47,14 @@ async function main(): Promise<void> {
     const page = stagehand.context.pages()[0];
 
     await page.goto(SAUCE_DEMO_URL);
+    await delayAfterAction();
 
     // Wait for the page to finish loading.
     await page.waitForLoadState("load", 15000);
+    await delayAfterAction();
 
     const result = await stagehand.act('Type "John" into the username field.');
+    await delayAfterAction();
 
     console.log(result);
   } finally {

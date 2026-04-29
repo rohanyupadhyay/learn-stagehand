@@ -1,4 +1,5 @@
 // Run with: npm exec -- tsx examples/sauce_demo_agent_login.ts
+// Run with delay: npm exec -- tsx examples/sauce_demo_agent_login.ts --add-delay
 //
 // This example uses Stagehand's agent API to log into Sauce Demo with
 // provided credentials.
@@ -12,6 +13,7 @@ import {
   createAutomationUserDataDir,
   removeAutomationUserDataDir,
 } from "../common/chromeAutomationProfile.js";
+import { delayAfterAction } from "../common/delay.js";
 import { getStagehandEnv, getStagehandModel } from "../common/utils.js";
 
 const SAUCE_DEMO_URL = "https://www.saucedemo.com/";
@@ -61,6 +63,7 @@ async function main(): Promise<void> {
 
     const page = stagehand.context.pages()[0];
     await page.goto(SAUCE_DEMO_URL);
+    await delayAfterAction();
 
     const agent = stagehand.agent({
       mode: "hybrid", // "dom", "cua", or "hybrid". Default is "dom".
@@ -71,6 +74,7 @@ async function main(): Promise<void> {
       instruction,
       variables,
     });
+    await delayAfterAction();
 
     console.log(result);
 

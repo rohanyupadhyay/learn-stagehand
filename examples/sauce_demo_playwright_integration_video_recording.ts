@@ -1,4 +1,5 @@
 // Run with: npm exec -- tsx examples/sauce_demo_playwright_integration_video_recording.ts
+// Run with delay: npm exec -- tsx examples/sauce_demo_playwright_integration_video_recording.ts --add-delay
 //
 // This example uses Playwright alongside Stagehand to record video
 // because Stagehand does not support video recording in LOCAL mode.
@@ -14,6 +15,7 @@ import {
   createAutomationUserDataDir,
   removeAutomationUserDataDir,
 } from "../common/chromeAutomationProfile.js";
+import { delayAfterAction } from "../common/delay.js";
 import { getStagehandEnv, getStagehandModel } from "../common/utils.js";
 
 const SAUCE_DEMO_URL = "https://www.saucedemo.com/";
@@ -68,6 +70,7 @@ try {
   // Close the initial page that Stagehand created during init() since we will use
   // the Playwright-owned page for the run.
   await stagehand.context.pages()[0]?.close();
+  await delayAfterAction();
   
   const agent = stagehand.agent({
     mode: "hybrid", // "dom", "cua", or "hybrid". Default is "dom".
@@ -75,19 +78,24 @@ try {
 
   // Stagehand handles the AI login flow on a Playwright-owned page.
   await pwPage.goto(SAUCE_DEMO_URL);
+  await delayAfterAction();
   await agent.execute({
     instruction: "Login to the website.",
     page: pwPage,
     variables,
   });
+  await delayAfterAction();
 
   // Playwright complements Stagehand here with a feature Stagehand does not
   // expose for LOCAL runs: saving a browser video.
   const title = await pwPage.title();
+  await delayAfterAction();
   const url = pwPage.url();
+  await delayAfterAction();
   const video = pwPage.video();
 
   await pwContext.close();
+  await delayAfterAction();
 
   console.log({
     message:
@@ -100,6 +108,7 @@ try {
   });
 
   await browser.close();
+  await delayAfterAction();
 } finally {
   await stagehand.close();
   removeAutomationUserDataDir(userDataDir);

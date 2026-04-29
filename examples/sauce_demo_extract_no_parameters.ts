@@ -1,4 +1,5 @@
 // Run with: npm exec -- tsx examples/sauce_demo_extract_no_parameters.ts
+// Run with delay: npm exec -- tsx examples/sauce_demo_extract_no_parameters.ts --add-delay
 //
 // This example logs into Sauce Demo and calls Stagehand `extract`
 // without an instruction or schema.
@@ -12,6 +13,7 @@ import {
   createAutomationUserDataDir,
   removeAutomationUserDataDir,
 } from "../common/chromeAutomationProfile.js";
+import { delayAfterAction } from "../common/delay.js";
 import { getStagehandEnv, getStagehandModel } from "../common/utils.js";
 
 const SAUCE_DEMO_URL = "https://www.saucedemo.com/";
@@ -61,6 +63,7 @@ async function main(): Promise<void> {
 
     const page = stagehand.context.pages()[0];
     await page.goto(SAUCE_DEMO_URL);
+    await delayAfterAction();
 
     const agent = stagehand.agent({
       mode: "hybrid", // "dom", "cua", or "hybrid". Default is "dom".
@@ -71,11 +74,14 @@ async function main(): Promise<void> {
       instruction,
       variables,
     });
+    await delayAfterAction();
 
 
     await page.waitForLoadState("load", 15000);
+    await delayAfterAction();
 
     const products = await stagehand.extract();
+    await delayAfterAction();
 
     console.log(products);
   } finally {

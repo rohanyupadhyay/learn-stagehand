@@ -1,4 +1,5 @@
 // Run with: npm exec -- tsx examples/sauce_demo_observe.ts
+// Run with delay: npm exec -- tsx examples/sauce_demo_observe.ts --add-delay
 //
 // This example opens the Sauce Demo landing page and asks Stagehand
 // to observe the input fields available on the page.
@@ -11,6 +12,7 @@ import {
   createAutomationUserDataDir,
   removeAutomationUserDataDir,
 } from "../common/chromeAutomationProfile.js";
+import { delayAfterAction } from "../common/delay.js";
 import { getStagehandEnv, getStagehandModel } from "../common/utils.js";
 
 const SAUCE_DEMO_URL = "https://www.saucedemo.com/";
@@ -47,11 +49,14 @@ async function main(): Promise<void> {
     const page = stagehand.context.pages()[0];
 
     await page.goto(SAUCE_DEMO_URL);
+    await delayAfterAction();
 
     // Wait for the page to finish loading.
     await page.waitForLoadState("load", 15000);
+    await delayAfterAction();
 
     const observedActions = await stagehand.observe("Find all input fields.");
+    await delayAfterAction();
 
     console.log("Observed input-field actions:");
     console.log(JSON.stringify(observedActions, null, 2));

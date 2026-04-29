@@ -1,4 +1,5 @@
 // Run with: npm exec -- tsx examples/sauce_demo_extract_with_schema.ts
+// Run with delay: npm exec -- tsx examples/sauce_demo_extract_with_schema.ts --add-delay
 //
 // This example logs into Sauce Demo and uses Stagehand `extract`
 // with both an instruction and a Zod schema.
@@ -12,6 +13,7 @@ import {
   createAutomationUserDataDir,
   removeAutomationUserDataDir,
 } from "../common/chromeAutomationProfile.js";
+import { delayAfterAction } from "../common/delay.js";
 import { getStagehandEnv, getStagehandModel } from "../common/utils.js";
 
 const SAUCE_DEMO_URL = "https://www.saucedemo.com/";
@@ -61,6 +63,7 @@ async function main(): Promise<void> {
 
     const page = stagehand.context.pages()[0];
     await page.goto(SAUCE_DEMO_URL);
+    await delayAfterAction();
 
     const agent = stagehand.agent({
       mode: "hybrid", // "dom", "cua", or "hybrid". Default is "dom".
@@ -71,9 +74,11 @@ async function main(): Promise<void> {
       instruction,
       variables,
     });
+    await delayAfterAction();
 
 
     await page.waitForLoadState("load", 15000);
+    await delayAfterAction();
 
     const { products } = await stagehand.extract(
       "Extract the name and price of all visible products on this inventory page.",
@@ -90,6 +95,7 @@ async function main(): Promise<void> {
           .describe("The visible Sauce Demo products in page order"),
       }),
     );
+    await delayAfterAction();
 
     console.log(products);
   } finally {

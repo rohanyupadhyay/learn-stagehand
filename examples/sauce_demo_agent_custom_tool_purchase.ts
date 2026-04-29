@@ -1,4 +1,5 @@
 // Run with: npm exec -- tsx examples/sauce_demo_agent_custom_tool_purchase.ts
+// Run with delay: npm exec -- tsx examples/sauce_demo_agent_custom_tool_purchase.ts --add-delay
 //
 // This example gives Stagehand's agent a custom `check_requirement` tool
 // that returns the Sauce Demo product names to purchase.
@@ -13,6 +14,7 @@ import {
   createAutomationUserDataDir,
   removeAutomationUserDataDir,
 } from "../common/chromeAutomationProfile.js";
+import { delayAfterAction } from "../common/delay.js";
 import {
   getStagehandEnv,
   getStagehandModel,
@@ -108,6 +110,7 @@ async function main(): Promise<void> {
       variables,
       output,
     });
+    await delayAfterAction();
 
     console.log("Structured output:");
     console.log(JSON.stringify(result.output, null, 2));

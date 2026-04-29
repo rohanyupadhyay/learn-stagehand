@@ -1,4 +1,5 @@
 // Run with: npm exec -- tsx examples/sauce_demo_agent_purchase.ts
+// Run with delay: npm exec -- tsx examples/sauce_demo_agent_purchase.ts --add-delay
 //
 // This example runs a full Sauce Demo checkout flow with Stagehand's
 // agent API and prints structured purchase details.
@@ -12,6 +13,7 @@ import {
   createAutomationUserDataDir,
   removeAutomationUserDataDir,
 } from "../common/chromeAutomationProfile.js";
+import { delayAfterAction } from "../common/delay.js";
 import {
   getStagehandEnv,
   getStagehandModel,
@@ -100,6 +102,7 @@ async function main(): Promise<void> {
       variables,
       output,
     });
+    await delayAfterAction();
 
     // Print the structured output payload.
     console.log("Structured output:");
