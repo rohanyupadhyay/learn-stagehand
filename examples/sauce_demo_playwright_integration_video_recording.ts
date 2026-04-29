@@ -27,9 +27,10 @@ const variables = {
 const env = getStagehandEnv();
 const model = getStagehandModel();
 
-// Launch Chrome with a temporary automation profile so startup prompts do not
-// interrupt the run and both Stagehand and Playwright attach to the same
-// predictable browser state.
+// `userDataDir` points Chrome at a temporary automation profile. The helper
+// creates it with prompts disabled so local browser UI does not interrupt the
+// example, and the `finally` block removes it after Stagehand closes.
+// This also gives Stagehand and Playwright the same predictable browser state.
 const userDataDir = createAutomationUserDataDir(
   "stagehand-playwright-integration-",
 );
@@ -43,7 +44,7 @@ const stagehand = new Stagehand({
   experimental: true,
   model, // e.g. "google/gemini-2.5-pro", "openai/gpt-4o", etc.
   localBrowserLaunchOptions: {
-    userDataDir,
+    userDataDir, // Chrome profile directory
   },
 });
 
@@ -111,5 +112,7 @@ try {
   await delayAfterAction();
 } finally {
   await stagehand.close();
+
+  // Remove the temporary Chrome profile created for this automation run.
   removeAutomationUserDataDir(userDataDir);
 }

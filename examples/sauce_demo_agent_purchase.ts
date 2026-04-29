@@ -67,6 +67,9 @@ const output = z.object({
  * Runs a full Sauce Demo checkout flow with Stagehand's agent API.
  */
 async function main(): Promise<void> {
+  // `userDataDir` points Chrome at a temporary automation profile. The helper
+  // creates it with prompts disabled so local browser UI does not interrupt the
+  // example, and the `finally` block removes it after Stagehand closes.
   const userDataDir = createAutomationUserDataDir(
     "stagehand-sauce-demo-profile-",
   );
@@ -80,7 +83,7 @@ async function main(): Promise<void> {
     model, // e.g. "google/gemini-2.5-pro", "openai/gpt-4o", etc.
     verbose: 0,
     localBrowserLaunchOptions: {
-      userDataDir,
+      userDataDir, // Chrome profile directory
       viewport: VIEWPORT,
     },
     // cacheDir: "runtime/cache/saucedemo_with_agent",
@@ -109,6 +112,8 @@ async function main(): Promise<void> {
     console.log(JSON.stringify(result.output, null, 2));
   } finally {
     await stagehand.close();
+
+    // Remove the temporary Chrome profile created for this automation run.
     removeAutomationUserDataDir(userDataDir);
   }
 }

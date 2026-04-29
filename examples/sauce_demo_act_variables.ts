@@ -37,6 +37,9 @@ const variables = {
  * username and password fields.
  */
 async function main(): Promise<void> {
+  // `userDataDir` points Chrome at a temporary automation profile. The helper
+  // creates it with prompts disabled so local browser UI does not interrupt the
+  // example, and the `finally` block removes it after Stagehand closes.
   const userDataDir = createAutomationUserDataDir(
     "stagehand-sauce-demo-act-variables-",
   );
@@ -48,7 +51,7 @@ async function main(): Promise<void> {
     experimental: true,
     verbose: 0,
     localBrowserLaunchOptions: {
-      userDataDir,
+      userDataDir, // Chrome profile directory
       viewport: VIEWPORT,
     },
     // cacheDir: "runtime/cache/sauce_demo_act_variables",
@@ -86,6 +89,8 @@ async function main(): Promise<void> {
     });
   } finally {
     await stagehand.close();
+
+    // Remove the temporary Chrome profile created for this automation run.
     removeAutomationUserDataDir(userDataDir);
   }
 }

@@ -7,6 +7,10 @@
 import "dotenv/config";
 
 import { Stagehand } from "@browserbasehq/stagehand";
+import {
+  createAutomationUserDataDir,
+  removeAutomationUserDataDir,
+} from "../common/chromeAutomationProfile.js";
 import { delayAfterAction } from "../common/delay.js";
 import { getStagehandEnv, getStagehandModel } from "../common/utils.js";
 
@@ -18,10 +22,20 @@ const SAUCE_DEMO_PASSWORD = "secret_sauce";
 const env = getStagehandEnv();
 const model = getStagehandModel();
 
+// `userDataDir` points Chrome at a temporary automation profile. The helper
+// creates it with prompts disabled so local browser UI does not interrupt the
+// example, and the `finally` block removes it after Stagehand closes.
+const userDataDir = createAutomationUserDataDir(
+  "stagehand-sauce-demo-page-and-locator-",
+);
+
 // Create one Stagehand client.
 const stagehand = new Stagehand({
   env, // LOCAL or BROWSERBASE
   model, // e.g. "google/gemini-2.5-pro", "openai/gpt-4o", etc.
+  localBrowserLaunchOptions: {
+    userDataDir, // Chrome profile directory
+  },
 });
 
 try {
@@ -61,4 +75,7 @@ try {
 } finally {
   // Always close the browser session, even if the example throws.
   await stagehand.close();
+
+  // Remove the temporary Chrome profile created for this automation run.
+  removeAutomationUserDataDir(userDataDir);
 }
