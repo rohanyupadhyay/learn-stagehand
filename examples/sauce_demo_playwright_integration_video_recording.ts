@@ -51,7 +51,7 @@ const stagehand = new Stagehand({
 try {
 
   await stagehand.init();
-
+  await delayAfterAction();
   // Connect Playwright to the browser session that Stagehand started.
   // `chromium` is playwright's object for controlling chromium based browsers.
   const browser = await chromium.connectOverCDP(stagehand.connectURL());

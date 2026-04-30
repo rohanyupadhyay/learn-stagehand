@@ -46,7 +46,7 @@ async function main(): Promise<void> {
 
   try {
     await stagehand.init();
-
+    await delayAfterAction();
     const page = stagehand.context.pages()[0];
 
     await page.goto(SAUCE_DEMO_URL);

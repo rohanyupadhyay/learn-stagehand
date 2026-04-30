@@ -42,7 +42,7 @@ try {
   
   // Initialize the browser session. It creates a browser context and opens a new tab.
   await stagehand.init();
-
+  await delayAfterAction();
   // Get the browser tab on which we will operate.
   const page = stagehand.context.pages()[0];
 

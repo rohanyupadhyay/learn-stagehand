@@ -97,7 +97,7 @@ async function main(): Promise<void> {
 
   try {
     await stagehand.init();
-
+    await delayAfterAction();
     const agent = stagehand.agent({
       mode: "hybrid", // "dom", "cua", or "hybrid". Default is "dom".
       model,
