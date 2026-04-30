@@ -84,7 +84,7 @@ async function main(): Promise<void> {
     verbose: 0,
     localBrowserLaunchOptions: {
       userDataDir, // Chrome profile directory
-      viewport: VIEWPORT,
+      viewport: VIEWPORT, // Browser window size
     },
     // cacheDir: "runtime/cache/saucedemo_with_agent",
   });
